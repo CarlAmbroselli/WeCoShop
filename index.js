@@ -1,6 +1,7 @@
 var express = require('express');
 var process = require('process');
 var app = express();
+var cors = require('cors')
 var bodyParser = require('body-parser');
 var login = require('./routes/login')
 var party = require('./routes/party')
@@ -8,6 +9,7 @@ var search = require('./routes/search')
 
 
 app.use(bodyParser.json())
+app.use(cors())
 
 app.post('/api/v1/login/vk', function (req, res) {
   login.vkLogin(req, res);
