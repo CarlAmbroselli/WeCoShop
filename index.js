@@ -21,7 +21,7 @@ app.post('/api/v1/party/create', function (req, res) {
   party.createParty(req, res);
 });
 
-app.get('/api/v1/search/list', function (req, res) {
+app.get('/api/v1/party/list', function (req, res) {
   party.listParties(req, res);
 });
 

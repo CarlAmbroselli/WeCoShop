@@ -21,9 +21,9 @@ let party = {
         name: "Christmas Bash",
         date: 1573893161,
         location: {
-          name: req.body.location.name,
-          lat: req.body.location.lat,
-          lon: req.body.location.lon
+          name: "Buckingham Palace",
+          lat: 1,
+          lon: 1
         }
       },
       {
@@ -32,9 +32,9 @@ let party = {
         name: "Rosa Queens",
         date: 1573893161,
         location: {
-          name: req.body.location.name,
-          lat: req.body.location.lat,
-          lon: req.body.location.lon
+          name: "Buckingham Palace",
+          lat: 1,
+          lon: 1
         }
       }
     ])
