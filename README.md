@@ -29,10 +29,11 @@
 ### Login
 ```
 POST /login/vk
-Response: Person
+Request:
 {
     callbackUrl: string
 }
+Response: Person
 
 POST /login/guest
 Request (optional body if recurring user): 
@@ -73,11 +74,12 @@ Person
 
 Party
 {
-    partyId: int, // (not set during creation)
-    creatorUser: int, // (not set during creation)
+    partyId: optional<int>, // (not set during creation)
+    creatorUser: optional<int>, // (not set during creation)
     name: string,
     date: int,
-    location: Location
+    location: Location,
+    headerPicture: optional<string>
 }
 
 SearchResult
