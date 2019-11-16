@@ -67,7 +67,7 @@ GET /api/v1/search/location/:text
 Response: Location
 
 All pictures can be accessed at:
-https://wecoshop.club/products/images/{id}.jpg
+https://search.wecoshop.club/products/images/{id}.jpg
 ```
 
 ### Backend Entities
