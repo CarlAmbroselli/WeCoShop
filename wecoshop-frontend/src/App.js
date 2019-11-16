@@ -7,24 +7,17 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
-import './App.css';
-import { PageHeader } from 'antd';
-import Signup from './controller/signup.js'
+import "./App.css";
+import { PageHeader } from "antd";
+import Signup from "./controller/signup.js";
 
+import Pages from "./Pages";
 
 export default function App() {
   return (
     <Router>
       <div>
-      <PageHeader
-        style={{
-          border: '1px solid rgb(235, 237, 240);',
-        }}
-        // onBack={() => null}
-        title="WeCoShop"
-        subTitle="This is a subtitle"
-      />
-        <ul>
+        {/* <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -34,17 +27,13 @@ export default function App() {
           <li>
             <Link to="/topics">Topics</Link>
           </li>
-        </ul>
+        </ul> */}
 
         <Switch>
-          <Route path="/signup">
-            <Signup />
-          </Route>
+          <Route exact path="/" component={Pages.PartyOverview}></Route>
+          <Route path="/login" component={Pages.Login}></Route>
           <Route path="/topics">
             <Topics />
-          </Route>
-          <Route path="/">
-            <Home />
           </Route>
         </Switch>
       </div>
@@ -72,9 +61,7 @@ function Topics() {
           <Link to={`${match.url}/components`}>Components</Link>
         </li>
         <li>
-          <Link to={`${match.url}/props-v-state`}>
-            Props v. State
-          </Link>
+          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
         </li>
       </ul>
 
