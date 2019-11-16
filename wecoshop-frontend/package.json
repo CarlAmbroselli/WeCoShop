@@ -1,6 +1,7 @@
 {
   "name": "wecoshop-frontend",
   "version": "0.1.0",
+  "homepage": "https://wecoshop.club/web",
   "private": true,
   "dependencies": {
     "antd": "^3.25.1",
