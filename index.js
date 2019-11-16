@@ -27,6 +27,10 @@ app.get('/api/v1/party/list', function (req, res) {
   party.listParties(req, res);
 });
 
+app.get('/api/v1/search/item/:search', function (req, res) {
+  search.searchItem(req, res);
+});
+
 app.get('/api/v1/search/location/:text', function (req, res) {
   search.searchLocation(req, res);
 });

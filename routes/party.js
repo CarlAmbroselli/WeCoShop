@@ -40,6 +40,25 @@ let party = {
         headerPicture: "https://picsum.photos/200/50"
       }
     ])
+  },
+
+  searchItem(req, res) {
+      req.send([
+        {
+            id: 1,
+            name: "Tank Top",
+            pictureUrl: "https://picsum.photos/50/50",
+            price: 12,
+            currency: "EUR"
+        },
+        {
+            id: 2,
+            name: "Jeans",
+            pictureUrl: "https://picsum.photos/50/50",
+            price: 12,
+            currency: "EUR"
+        }
+      ])
   }
 }
 
