@@ -105,7 +105,7 @@ export class Party extends React.Component {
             style={{ width: "100%" }}
           />
           {this.state.items.length > 0 ? (
-            <React.Fragment>
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
               {this.state.items.map((item, index) => {
                 return (
                   <ProductItem
@@ -114,14 +114,14 @@ export class Party extends React.Component {
                   />
                 );
               })}
-              <Button onClick={this.searchMore} type="dashed">
-                See more
-              </Button>
-            </React.Fragment>
+            </div>
           ) : // <Loading>
           //   <Icon type="loading" />
           // </Loading>
           null}
+          <Button onClick={this.searchMore} type="dashed">
+            See more
+          </Button>
         </Page>
       </div>
     );

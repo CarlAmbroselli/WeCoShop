@@ -12,7 +12,6 @@ const PartyCard = styled(Card)`
 
   ${media.tablet`
     max-width: 300px;
-    max-height: 500px !important;
     margin-right: 10px !important;
   `}
 `;
@@ -21,7 +20,7 @@ export default party => (
   <PartyCard
     hoverable
     style={{ width: "100%" }}
-    cover={<img src={party.header_picture} />}
+    cover={<img src={party.header_picture} style={{ maxHeight: 350 }} />}
   >
     <Card.Meta title={party.name} description={party.location_name} />
   </PartyCard>
