@@ -8,6 +8,10 @@ class Database {
 
   }
 
+  shutdown() {
+    this.db.close()
+  }
+
   all(query, params=[], callback=()=>{}) {
     this.db.all(query, params, callback)
   }
@@ -21,7 +25,7 @@ class Database {
   }
 
   init() {
-    this.query("CREATE TABLE user " + 
+    this.query("CREATE TABLE IF NOT EXISTS user " + 
       "(userId INTEGER PRIMARY KEY, name TEXT, " +
       "email TEXT, hashed_password TEXT, " + 
       "vk_user_id INTEGER, vk_token TEXT, " +
@@ -31,7 +35,7 @@ class Database {
         }
       });
     
-    this.query("CREATE TABLE party " + 
+    this.query("CREATE TABLE IF NOT EXISTS party " + 
       "(partyId INTEGER PRIMARY KEY, creator_user INTEGER, " +
       "name TEXT, location_name TEXT, location_lat REAL, " +
       "location_lon REAL, date INTEGER, " + 

@@ -12,6 +12,9 @@ var person = require('./routes/person')
 var Database = require('./database')
 var db = new Database();
 
+var ProductsApi = require('./productsApi')
+var productsApi = new ProductsApi();
+
 app.use(bodyParser.json())
 app.use(cors())
 app.use(cookieParser())
@@ -60,8 +63,8 @@ app.get('/api/v1/party/list', function (req, res) {
   party.listParties(req, res, db);
 });
 
-app.get('/api/v1/search/item/:search', function (req, res) {
-  search.searchItem(req, res);
+app.get('/api/v1/search/item/:search/:page', function (req, res) {
+  search.searchItem(req, res, productsApi);
 });
 
 app.get('/api/v1/search/location/:text', function (req, res) {
@@ -72,4 +75,9 @@ let port = process.env.PORT || 8000
 
 app.listen(port, function () {
   console.log('WeCoShop is running on port ' + port + '!');
+});
+
+process.on('exit', function() {
+    productsApi.shutdown();
+    db.shutdown();
 });
