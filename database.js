@@ -154,7 +154,7 @@ class Database {
         $location_lat: party.location.lat,
         $location_lon: party.location.lon,
         $date: party.date,
-        $header_picture: party.headerPicture,
+        $header_picture: party.headerPicture || 'https://picsum.photos/200/50',
         $hash: hash,
         $category: party.category
       }, (err, res) => {

@@ -10,7 +10,7 @@ let person = {
   sendCurrentUser(req, res, db) {
     person.getCurrentUser(req, res, db).then(user => {
       res.send({
-        userId: user.id,
+        userId: user.userId,
         vkId: user.vk_user_id,
         email: user.email,
         name: user.name,
