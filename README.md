@@ -33,9 +33,8 @@ GET /api/v1/login/vk
 POST /api/v1/login/guest
 Request (optional body if recurring user): 
 {
-    name: string,
-    email: optional<string>,
-    password: optional<string>,
+    email: string,
+    password: string,
     callbackUrl: string
 }
 Response: Person
