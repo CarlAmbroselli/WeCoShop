@@ -2,7 +2,7 @@ var person = require('./person')
 
 let party = {
   createParty(req, res, db) {
-    let party = req.body
+    let party = req.body;
     console.log("Party i received", party)
     person.getCurrentUser(req, res, db).then(user => {
         db.createParty({

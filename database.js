@@ -154,9 +154,9 @@ class Database {
         $location_lat: party.location.lat,
         $location_lon: party.location.lon,
         $date: party.date,
-        $header_picture: party.headerPicture || 'https://picsum.photos/200/50',
+        $header_picture: party.header_picture || 'https://search.wecoshop.club/categories/' + party.category + '.jpg',
         $hash: hash,
-        $category: party.category
+        $category: party.category || ''
       }, (err, res) => {
         if (err) {
           console.log("Error creating party:", err)

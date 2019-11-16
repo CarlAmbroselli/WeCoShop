@@ -88,7 +88,7 @@ Party
     date: int,
     location: Location,
     category: optional<string>,
-    headerPicture: optional<string>
+    header_picture: optional<string>
 }
 
 SearchResult
