@@ -24,7 +24,8 @@ let party = {
           name: "Buckingham Palace",
           lat: 1,
           lon: 1
-        }
+        },
+        headerPicture: "https://picsum.photos/200/50"
       },
       {
         partyId: 2,
@@ -35,7 +36,8 @@ let party = {
           name: "Buckingham Palace",
           lat: 1,
           lon: 1
-        }
+        },
+        headerPicture: "https://picsum.photos/200/50"
       }
     ])
   }
