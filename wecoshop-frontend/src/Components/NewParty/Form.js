@@ -21,10 +21,12 @@ const CreationForm = styled.div`
 
 const TextInput = styled(Input)`
   width: 100% !important;
+  font-size: 16px;
 `;
 
 const FormItem = styled(Form.Item)`
   width: 100% !important;
+  font-size: 16px;
 `;
 
 export class PartyForm extends React.Component {

@@ -22,6 +22,7 @@ const SearchInput = styled(Input.Search)`
   // position: sticky;
   // top: 90px;
   // z-index: 10000;
+  font-size: 16px;
 `;
 
 const BackHeader = styled.div`
@@ -93,7 +94,8 @@ export class Party extends React.Component {
               this.setState(
                 {
                   page: 0,
-                  searchTerm: value
+                  searchTerm: value,
+                  items: []
                 },
                 () => {
                   this.findItems(value);

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon, Button } from "antd";
+import { Icon, Button, Badge, notification } from "antd";
 import { withRouter, Link } from "react-router-dom";
 import api from "../../api";
 import moment from "moment";
@@ -18,8 +18,13 @@ const Loading = styled.div`
   font-size: 40px;
 `;
 
+const Interaction = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export class Party extends React.Component {
-  state = { party: null, items: [] };
+  state = { party: null, items: [], ordered: false };
 
   componentDidMount() {
     const partyId = this.props.match.params.id;
@@ -33,6 +38,15 @@ export class Party extends React.Component {
     });
   }
 
+  order = () => {
+    notification["info"]({
+      message: "Order has been sent",
+      description:
+        "The Order was placed, and we will inform you when your items will be dispatched."
+    });
+    this.setState({ ordered: true });
+  };
+
   render() {
     return (
       <div>
@@ -44,6 +58,14 @@ export class Party extends React.Component {
                 {moment(this.state.party.date * 1000).format("DD. MMM YYYY")}
               </h3>
               <span>{this.state.party.location.name}</span>
+              <div>
+                Order until{" "}
+                <span style={{ color: "red", fontWeight: "bold" }}>
+                  {moment(this.state.party.date * 1000)
+                    .subtract(5, "days")
+                    .format("DD. MMM YYYY")}
+                </span>
+              </div>
             </div>
           )}
           <Link to="/parties">Go back</Link>
@@ -51,24 +73,46 @@ export class Party extends React.Component {
         <Page>
           {this.state.party ? (
             <div>
-              <Button
-                type="primary"
-                style={{ marginBottom: 10 }}
-                onClick={() =>
-                  this.props.history.push(
-                    `/party/${this.props.match.params.id}/items`,
-                    {
-                      party: this.state.party
-                    }
-                  )
-                }
-                icon="shopping-cart"
+              <Interaction>
+                <Button
+                  type="primary"
+                  style={{ marginBottom: 10 }}
+                  onClick={() =>
+                    this.props.history.push(
+                      `/party/${this.props.match.params.id}/items`,
+                      {
+                        party: this.state.party
+                      }
+                    )
+                  }
+                  icon="shopping-cart"
+                >
+                  Add Items
+                </Button>
+                <Badge count={this.state.items.length}>
+                  <Button
+                    type="secondary"
+                    style={{ marginBottom: 10 }}
+                    onClick={this.order}
+                    icon="shopping-cart"
+                    disabled={this.state.ordered}
+                  >
+                    Order
+                  </Button>
+                </Badge>
+              </Interaction>
+              <div
+                style={{
+                  height: "calc(100vh - 175px)",
+                  overflow: "scroll",
+                  display: "flex",
+                  flexWrap: "wrap"
+                }}
               >
-                Add Items
-              </Button>
-              {this.state.items.map(item => {
-                return <ProductItem {...item} />;
-              })}
+                {this.state.items.map(item => {
+                  return <ProductItem {...item} />;
+                })}
+              </div>
             </div>
           ) : (
             <Loading>

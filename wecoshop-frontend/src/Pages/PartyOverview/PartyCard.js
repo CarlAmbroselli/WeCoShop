@@ -11,9 +11,10 @@ const PartyCard = styled(Card)`
   box-shadow: 3px 4px 9px -6px rgba(0, 0, 0, 0.75);
 
   ${media.tablet`
-      max-width: 300px;
-      margin-right: 10px !important;
-    `}
+    max-width: 300px;
+    max-height: 500px !important;
+    margin-right: 10px !important;
+  `}
 `;
 
 export default party => (
@@ -22,6 +23,6 @@ export default party => (
     style={{ width: "100%" }}
     cover={<img src={party.header_picture} />}
   >
-    <Card.Meta title={party.name} />
+    <Card.Meta title={party.name} description={party.location_name} />
   </PartyCard>
 );
