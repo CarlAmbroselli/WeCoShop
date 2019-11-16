@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Icon, Button } from "antd";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import api from "../../api";
+import moment from "moment";
 
 import Page from "../../Components/Page";
 import Header from "../../Components/Header";
@@ -36,7 +37,16 @@ export class Party extends React.Component {
     return (
       <div>
         <Header title="Party">
-          {this.state.party && <h3>{this.state.party.name}</h3>}
+          {this.state.party && (
+            <div>
+              <h3 style={{ marginBottom: 0 }}>
+                {this.state.party.name} on{" "}
+                {moment(this.state.party.date * 1000).format("DD. MMM YYYY")}
+              </h3>
+              <span>{this.state.party.location.name}</span>
+            </div>
+          )}
+          <Link to="/parties">Go back</Link>
         </Header>
         <Page>
           {this.state.party ? (

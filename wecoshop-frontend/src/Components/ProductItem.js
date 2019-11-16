@@ -33,7 +33,6 @@ const ProductDescription = styled.div`
 `;
 
 export default item => {
-  console.log("Render item", item);
   return (
     <ItemCard
       hoverable

@@ -32,7 +32,8 @@ export default class App extends React.Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Pages.PartyOverview}></Route>
+            <Route exact path="/" component={Pages.Login}></Route>
+            <Route path="/parties" component={Pages.PartyOverview}></Route>
             <Route path="/login" component={Pages.Login}></Route>
             <Route path="/party/:id/items" component={Pages.PartyItems}></Route>
             <Route path="/party/:id" component={Pages.Party}></Route>

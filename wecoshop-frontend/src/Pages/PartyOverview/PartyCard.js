@@ -22,6 +22,6 @@ export default party => (
     style={{ width: "100%" }}
     cover={<img src={party.header_picture} />}
   >
-    <Card.Meta title={party.name} description="www.instagram.com" />
+    <Card.Meta title={party.name} />
   </PartyCard>
 );

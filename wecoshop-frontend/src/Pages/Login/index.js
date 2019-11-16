@@ -60,7 +60,7 @@ export default () => {
       <Filter />
       <Content>
         <LogoImage src={Logo} />
-        <h4>
+        <h4 style={{ color: "black" }}>
           Party and shop together with your friends - save money and the
           evironment
         </h4>
