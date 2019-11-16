@@ -28,11 +28,7 @@
 
 ### Login
 ```
-POST /api/v1/login/vk
-Request:
-{
-    callbackUrl: string
-}
+GET /api/v1/login/vk?callbackUrl=https://app.wecoshop.club/
 Response: Person
 
 POST /api/v1/login/guest
@@ -71,6 +67,7 @@ Response: Location
 Person
 {
     userId: int,
+    vkId: optional<int>,
     name: optional<string>,
     pictureUrl: optional<string>
 }
