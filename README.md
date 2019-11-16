@@ -84,6 +84,7 @@ Party
     name: string,
     date: int,
     location: Location,
+    category: optional<string>,
     headerPicture: optional<string>
 }
 

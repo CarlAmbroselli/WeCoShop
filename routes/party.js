@@ -1,16 +1,21 @@
+var person = require('./person')
+
 let party = {
-  createParty(req, res) {
-    res.send({
-      partyId: 3,
-      creatorUser: 4,
-      name: req.body.name,
-      date: req.body.date,
-      location: {
-        name: req.body.location.name,
-        lat: req.body.location.lat,
-        lon: req.body.location.lon
-      }
-    });
+  createParty(req, res, db) {
+    let party = req.body
+    person.getCurrentUser(req, res, db).then(user => {
+        db.createParty({
+            creatorUser: user.userId,
+            name: party.name,
+            location: party.location,
+            date: party.date,
+            category: party.category,
+            headerPicture: party.headerPicture
+        }).then(party => {
+            console.log(party)
+            res.send(party)
+        })
+    })
   },
 
   listParties(req, res) {

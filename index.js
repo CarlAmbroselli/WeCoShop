@@ -49,15 +49,15 @@ app.post('/api/v1/login/guest', function (req, res) {
 });
 
 app.get('/api/v1/me', function (req, res) {
-  person.getCurrentUser(req, res, db);
+  person.sendCurrentUser(req, res, db);
 });
 
 app.post('/api/v1/party/create', function (req, res) {
-  party.createParty(req, res);
+  party.createParty(req, res, db);
 });
 
 app.get('/api/v1/party/list', function (req, res) {
-  party.listParties(req, res);
+  party.listParties(req, res, db);
 });
 
 app.get('/api/v1/search/item/:search', function (req, res) {
