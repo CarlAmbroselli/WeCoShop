@@ -25,6 +25,36 @@ let party = {
             res.send(parties)
         })
     })
+  },
+
+  addPartyItem(req, res, db) {
+    db.addPartyItem(req.params.partyId, req.body).then(() => {
+        res.send({ "success": true })
+    })
+  },
+
+  getPartyDetails(req, res, db) {
+      db.getPartyItems(req.params.partyId).then((items) => {
+        db.getPartyById(req.params.partyId).then((party) => {
+        
+        res.send({
+            details: {
+                partyId: party.partyId,
+                creatorUser: party.creator_user,
+                name: party.name,
+                date: party.date,
+                location: {
+                    name: party.location_name,
+                    lat: party.location_lat,
+                    lon: party.location_lon
+                },
+                category: party.category,
+                header_picture: party.header_picture
+            },
+            items: items
+        })
+      })
+    })
   }
 };
 

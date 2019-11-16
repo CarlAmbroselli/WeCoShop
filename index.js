@@ -68,6 +68,14 @@ app.get('/api/v1/party/list', function (req, res) {
   party.listParties(req, res, db);
 });
 
+app.post('/api/v1/party/:partyId/addItem', function (req, res) {
+  party.addPartyItem(req, res, db);
+});
+
+app.get('/api/v1/party/:partyId/details', function (req, res) {
+    party.getPartyDetails(req, res, db);
+});
+
 app.get('/api/v1/search/item/:search/:page', function (req, res) {
   search.searchItem(req, res, productsApi);
 });

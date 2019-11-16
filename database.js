@@ -35,15 +35,24 @@ class Database {
         }
       });
     
-    this.query("CREATE TABLE IF NOT EXISTS party " + 
-      "(partyId INTEGER PRIMARY KEY, creator_user INTEGER, " +
-      "name TEXT, location_name TEXT, location_lat REAL, " +
-      "location_lon REAL, date INTEGER, " + 
-      "header_picture TEXT, hash TEXT, category TEXT)", [], (err) => {
-        if (err) {
-          console.log(err)
-        }
-    });
+      this.query("CREATE TABLE IF NOT EXISTS party " + 
+        "(partyId INTEGER PRIMARY KEY, creator_user INTEGER, " +
+        "name TEXT, location_name TEXT, location_lat REAL, " +
+        "location_lon REAL, date INTEGER, " + 
+        "header_picture TEXT, hash TEXT, category TEXT)", [], (err) => {
+          if (err) {
+            console.log(err)
+          }
+      });
+    
+      this.query("CREATE TABLE IF NOT EXISTS item " + 
+        "(added_item_id INTEGER PRIMARY KEY, party_id INTEGER, product_id INTEGER, gender TEXT, product_display_name TEXT, " + 
+        "usage TEXT, season TEXT, article_type TEXT, sub_category TEXT, " + 
+        "master_category TEXT)", [], (err) => {
+          if (err) {
+            console.log(err)
+          }
+      });
   }
 
   getUser(accessToken, tryCount=0) {
@@ -124,6 +133,20 @@ class Database {
     })
   }
 
+  getPartyById(partyId) {
+    return new Promise((resolve, reject) => {
+      this.getFirst("SELECT * FROM party WHERE partyId = $partyId", {
+        $partyId: partyId
+      }, (err, row) => {
+        if (err) {
+          reject()
+        } else {
+          resolve(row)
+        }
+      })
+    })
+  }
+
   getAllParties(creatorUserId) {
     return new Promise((resolve, reject) => {
       this.all("SELECT * FROM party WHERE creator_user = $creatorUserId", {
@@ -163,6 +186,45 @@ class Database {
         }
         resolve(this.getParty(hash))
       })
+    })
+  }
+
+  getPartyItems(partyId) {
+    return new Promise((resolve, reject) => {
+      this.all("SELECT * FROM item WHERE party_id = $party_id", {
+        $party_id: partyId
+      }, (err, res) => {
+        if (err) {
+          console.log("Error reading all party item:", err)
+        }
+        console.log(res)
+        resolve(res)
+      })
+    })
+  }
+
+  addPartyItem(partyId, partyItem) {
+    return new Promise((resolve, reject) => {
+      this.query("INSERT INTO item (party_id, product_id, gender, product_display_name, usage, season, " +
+      "article_type, sub_category, master_category) VALUES " + 
+      "($party_id, $product_id, $gender, $product_display_name, $usage, $season, $article_type, $sub_category, $master_category)", {
+        $party_id: partyId,
+        $product_id: partyItem.productId,
+        $gender: partyItem.gender,
+        $product_display_name: partyItem.productDisplayName,
+        $usage: partyItem.usage,
+        $season: partyItem.season,
+        $article_type: partyItem.articleType,
+        $sub_category: partyItem.subCategory,
+        $master_category: partyItem.masterCategory,
+      }, (err, res) => {
+        if (err) {
+          console.log("Error adding item to party", err)
+          reject("Error adding item to party")
+        } else {
+          resolve()
+        }
+      }) 
     })
   }
 }

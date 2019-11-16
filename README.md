@@ -55,6 +55,16 @@ Response: Party
 
 GET /api/v1/party/list
 Response: Party[]
+
+POST /api/v1/party/:partyId/addItem
+Request: PartyItem
+
+GET /api/v1/party/:partyId/details
+Response: 
+{
+    details: Party,
+    items: PartyItem[]
+}
 ```
 
 ### Search
@@ -89,6 +99,18 @@ Party
     location: Location,
     category: optional<string>,
     header_picture: optional<string>
+}
+
+PartyItem
+{
+    productId: int,
+    gender: string,
+    productDisplayName: string,
+    usage: string,
+    season: string,
+    articleType: string,
+    subCategory: string,
+    masterCategory: string
 }
 
 SearchResult
