@@ -7,6 +7,7 @@ const googleMapsClient = require('@google/maps').createClient({
 let search = {
 
   searchLocation(req, res) {
+    console.log("Searching for", req.params.text)
     googleMapsClient.geocode({address: req.params.text}, function(err, response) {
       if (!err) {
         res.send(response.json.results.map(result => {
