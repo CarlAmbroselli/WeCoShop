@@ -22,6 +22,7 @@ const SearchInput = styled(Input.Search)`
   // position: sticky;
   // top: 90px;
   // z-index: 10000;
+  font-size: 16px;
 `;
 
 const BackHeader = styled.div`
