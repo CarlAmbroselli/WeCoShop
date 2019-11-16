@@ -6,9 +6,13 @@ var login = require('./routes/login')
 app.use(bodyParser.json())
 
 app.post('/login/vk', function (req, res) {
-    login(req, res);
+    login.vkLogin(req, res);
 });
 
-app.listen(3000, function () {
-  console.log('WeCoShop is running on port 3000!');
+app.post('/login/guest', function (req, res) {
+    login.guestLogin(req, res);
+});
+
+app.listen(8000, function () {
+  console.log('WeCoShop is running on port 8000!');
 });
