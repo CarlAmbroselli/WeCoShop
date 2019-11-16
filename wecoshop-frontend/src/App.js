@@ -22,7 +22,7 @@ export default class App extends React.Component {
         (!user.vkId || !user.email) &&
         window.location.pathname !== "/login"
       ) {
-        window.location.pathname = "/login";
+        // window.location.pathname = "/login";
       }
     });
   }
@@ -34,6 +34,7 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Pages.PartyOverview}></Route>
             <Route path="/login" component={Pages.Login}></Route>
+            <Route path="/party/:id/items" component={Pages.PartyItems}></Route>
             <Route path="/party/:id" component={Pages.Party}></Route>
             <Route path="/topics">
               <Topics />

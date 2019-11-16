@@ -38,10 +38,14 @@ export class PartyForm extends React.Component {
 
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         this.props.createParty({
           ...values,
-          date: values.date.unix()
+          date: values.date.unix(),
+          location: {
+            name: values.location,
+            lat: 0,
+            lon: 0
+          }
         });
       }
     });
@@ -68,7 +72,6 @@ export class PartyForm extends React.Component {
               rules: [{ required: true, message: "Please choose category" }],
               trigger: "onClick",
               getValueFromEvent: event => {
-                console.log("Event", event, event.target.value);
                 this.setState({ category: event.target.value });
                 return event.target.value;
               }

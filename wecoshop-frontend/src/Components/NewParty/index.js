@@ -60,7 +60,7 @@ export default class NewParty extends React.Component {
     this.setState({
       showDialog: false
     });
-    api.createParty(data);
+    api.createParty(data).then(this.props.createParty);
   };
 
   render() {
@@ -91,3 +91,7 @@ export default class NewParty extends React.Component {
     );
   }
 }
+
+NewParty.defaultProps = {
+  createParty: () => {}
+};
