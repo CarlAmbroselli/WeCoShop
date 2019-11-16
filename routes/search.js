@@ -14,7 +14,7 @@ let search = {
           return {
             name: result.formatted_address,
             lat: result.geometry.location.lat,
-            lon: result.geometry.location.lon
+            lon: result.geometry.location.lng
           }
         }))
       } else {
