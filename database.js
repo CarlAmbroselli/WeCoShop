@@ -3,9 +3,9 @@ var sqlite3 = require('sqlite3').verbose();
 class Database {
   constructor() {
     // this.db = new sqlite3.Database(':memory:');
-    this.db = new sqlite3.Database('data.db');
+    this.db = new sqlite3.Database('data.sqlite');
     this.init()
-    
+
   }
 
   query(query, params=[], callback=()=>{}) {
