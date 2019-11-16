@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon, Button, Badge, notification } from "antd";
+import { Icon, Button, Badge, notification, Alert } from "antd";
 import { withRouter, Link } from "react-router-dom";
 import api from "../../api";
 import moment from "moment";
@@ -21,6 +21,17 @@ const Loading = styled.div`
 const Interaction = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const Hint = styled.div`
+  position: fixed;
+  bottom: 10px;
+
+  z-index: 200;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 export class Party extends React.Component {
@@ -101,9 +112,18 @@ export class Party extends React.Component {
                   </Button>
                 </Badge>
               </Interaction>
+              {this.state.items.length > 2 && (
+                <Hint>
+                  <Alert
+                    message="Add 2 more items to get a discount"
+                    type="info"
+                    showIcon
+                  />
+                </Hint>
+              )}
               <div
                 style={{
-                  height: "calc(100vh - 175px)",
+                  height: "calc(100vh - 250px)",
                   overflow: "scroll",
                   display: "flex",
                   flexWrap: "wrap"

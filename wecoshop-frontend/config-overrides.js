@@ -15,7 +15,8 @@ module.exports = override(
     javascriptEnabled: true,
     modifyVars: {
       "@primary-color": "#288679",
-      "@text-color-secondary": "#D5E3FF"
+      "@text-color-secondary": "#D5E3FF",
+      "@font-size-base": "16px"
     }
   })
 );
