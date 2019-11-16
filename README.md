@@ -28,7 +28,7 @@
 
 ### Login
 ```
-GET /api/v1/login/vk?callbackUrl=https://app.wecoshop.club/
+GET /api/v1/login/vk
 
 POST /api/v1/login/guest
 Request (optional body if recurring user): 
@@ -46,7 +46,7 @@ Response: Person
 GET /api/v1/me
 Response: 
 if authenticated: Person
-if not authenticated: null
+if not authenticated: `null`
 
 ### Party
 ```
