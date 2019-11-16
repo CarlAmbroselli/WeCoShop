@@ -26,6 +26,13 @@ let login = {
     })
   },
 
+  vkFlow(req, res, db) {
+    db.getUser(req.cookies.access_token).then(user => {
+        console.log(user)
+        res.send(user)
+    })
+  },
+
   vkLogin(req, res) {
     res.redirect("https://oauth.vk.com/authorize?" +
         `client_id=${APP_ID}&` +
