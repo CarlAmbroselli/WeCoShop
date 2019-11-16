@@ -21,17 +21,27 @@
 - Everyone can search articles and add to the shopping cart
 
 ### Order
-- VK Pay
+- VK Pay to pay friends
 - Enter email details + password
 
 ## API
 
 ### Login
 ```
-GET /login/vk
+POST /login/vk
 Response: Person
+{
+    callbackUrl: string
+}
 
-GET /login/guest
+POST /login/guest
+Request (optional body if recurring user): 
+{
+    name: string,
+    email: optional<string>,
+    password: optional<string>,
+    callbackUrl: string
+}
 Response: Person
 ```
 
