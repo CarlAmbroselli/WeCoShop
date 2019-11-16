@@ -18,33 +18,12 @@ let party = {
     })
   },
 
-  listParties(req, res) {
-    res.send([
-      {
-        partyId: 1,
-        creatorUser: 4,
-        name: "Christmas Bash",
-        date: 1573893161,
-        location: {
-          name: "Buckingham Palace",
-          lat: 1,
-          lon: 1
-        },
-        headerPicture: "https://picsum.photos/400/500"
-      },
-      {
-        partyId: 2,
-        creatorUser: 4,
-        name: "Rosa Queens",
-        date: 1573893161,
-        location: {
-          name: "Buckingham Palace",
-          lat: 1,
-          lon: 1
-        },
-        headerPicture: "https://picsum.photos/400/500"
-      }
-    ]);
+  listParties(req, res, db) {
+    person.getCurrentUser(req, res, db).then(user => {
+        db.getAllParties(user.userId).then(parties => {
+            res.send(parties)
+        })
+    })
   }
 };
 

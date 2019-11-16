@@ -8,6 +8,10 @@ class Database {
 
   }
 
+  all(query, params=[], callback=()=>{}) {
+    this.db.all(query, params, callback)
+  }
+
   query(query, params=[], callback=()=>{}) {
     this.db.run(query, params, callback)
   }
@@ -40,7 +44,7 @@ class Database {
 
   getUser(accessToken, tryCount=0) {
     return new Promise((resolve, reject) => {
-      this.getFirst("SELECT * FROM user WHERE active_access_token = $token OR 1=1", {
+      this.getFirst("SELECT * FROM user WHERE active_access_token = $token", {
         $token: accessToken
       }, (err, row) => {
         if (err || tryCount > 2) {
@@ -104,7 +108,7 @@ class Database {
 
   getParty(hash) {
     return new Promise((resolve, reject) => {
-      this.getFirst("SELECT * FROM party WHERE hash = $hash OR 1=1", {
+      this.getFirst("SELECT * FROM party WHERE hash = $hash", {
         $hash: hash
       }, (err, row) => {
         if (err) {
@@ -112,6 +116,20 @@ class Database {
         } else {
           resolve(row)
         }
+      })
+    })
+  }
+
+  getAllParties(creatorUserId) {
+    return new Promise((resolve, reject) => {
+      this.all("SELECT * FROM party WHERE creator_user = $creatorUserId", {
+        $creatorUserId: creatorUserId
+      }, (err, res) => {
+        if (err) {
+          console.log("Error reading all parties:", err)
+        }
+        console.log(res)
+        resolve(res)
       })
     })
   }
