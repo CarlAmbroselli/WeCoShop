@@ -23,3 +23,21 @@
 ### Order
 - VK Pay
 - Enter email details + password
+
+## API
+
+### Login
+```
+GET /login/vk
+{
+    userId: 123,
+    name: "Moe Chedar",
+    pictureUrl: "https://picsum.photos/50/50"
+}
+
+GET /login/guest
+{
+    userId: 123,
+    pictureUrl: "https://picsum.photos/50/50"
+}
+```
