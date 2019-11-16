@@ -28,12 +28,7 @@
 
 ### Login
 ```
-POST /api/v1/login/vk
-Request:
-{
-    callbackUrl: string
-}
-Response: Person
+GET /api/v1/login/vk?callbackUrl=https://app.wecoshop.club/
 
 POST /api/v1/login/guest
 Request (optional body if recurring user): 
@@ -45,6 +40,13 @@ Request (optional body if recurring user):
 }
 Response: Person
 ```
+
+### User
+
+GET /api/v1/me
+Response: 
+if authenticated: Person
+if not authenticated: null
 
 ### Party
 ```
@@ -71,6 +73,7 @@ Response: Location
 Person
 {
     userId: int,
+    vkId: optional<int>,
     name: optional<string>,
     pictureUrl: optional<string>
 }
