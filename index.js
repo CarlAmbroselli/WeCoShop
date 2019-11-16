@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var login = require('./routes/login')
 var party = require('./routes/party')
 var search = require('./routes/search')
+var person = require('./routes/person')
 
 var Database = require('./database')
 var db = new Database();
@@ -35,16 +36,20 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/api/v1/login/vk', function (req, res) {
+app.get('/api/v1/login/vk', function (req, res) {
   login.vkFlow(req, res, db);
 });
 
 app.get('/api/v1/oauth/vk', function (req, res) {
-    login.vkCodeResponse(req, res)
+  login.vkCodeResponse(req, res, db)
 })
 
 app.post('/api/v1/login/guest', function (req, res) {
   login.guestLogin(req, res);
+});
+
+app.post('/api/v1/me', function (req, res) {
+  person.getCurrentUser(req, res, db);
 });
 
 app.post('/api/v1/party/create', function (req, res) {

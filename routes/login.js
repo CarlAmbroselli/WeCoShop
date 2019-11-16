@@ -14,7 +14,7 @@ let login = {
     res.redirect(req.body.callbackUrl)
   },
 
-  vkCodeResponse(req, res) {
+  vkCodeResponse(req, res, db) {
     let code = req.query.code;
     request(`https://oauth.vk.com/access_token?` +
         `client_id=${APP_ID}&` +
@@ -22,14 +22,26 @@ let login = {
         `code=${code}&` +
         `redirect_uri=${REDIRECT_URI}`, function (error, response, body) {
             let authToken = JSON.parse(response.body)
-            console.log("Access Token: ", authToken)
+            console.log("VK Access Token: ", authToken)
+            db.storeVkToken(req.cookies.access_token, authToken.user_id, authToken.access_token).then(() => {
+                res.redirect(req.query.callbackUrl);
+            })
     })
   },
 
   vkFlow(req, res, db) {
     db.getUser(req.cookies.access_token).then(user => {
         console.log(user)
-        res.send(user)
+        if (!user.vk_user_id) {
+            this.vkLogin(req, res);
+        } else {
+            res.send({
+                userId: user.id,
+                vkId: user.vk_user_id,
+                name: user.name,
+                pictureUrl: user.pictureUrl
+            })
+        }
     })
   },
 
@@ -41,7 +53,6 @@ let login = {
         `response_type=code&` +
         `v=5.103`
     )
-    login.authenticate(req, res);
   },
 
   guestLogin(req, res) {

@@ -17,9 +17,9 @@ class Database {
   init() {
     this.query("CREATE TABLE user " + 
       "(id INTEGER PRIMARY KEY, name TEXT, " +
-      "mail TEXT, hashed_password TEXT, " + 
-      "vk_id INTEGER, vk_user_id INTEGER, vk_token TEXT, " +
-      "active_access_token TEXT)", [], (err) => {
+      "email TEXT, hashed_password TEXT, " + 
+      "vk_user_id INTEGER, vk_token TEXT, " +
+      "active_access_token TEXT, pictureUrl TEXT)", [], (err) => {
         if (err) {
           console.log(err)
         }
@@ -27,7 +27,6 @@ class Database {
   }
 
   getUser(accessToken, tryCount=0) {
-    console.log("TOKEN", accessToken)
     return new Promise((resolve, reject) => {
       this.getFirst("SELECT * FROM user WHERE active_access_token = $token", {
         $token: accessToken
@@ -38,7 +37,10 @@ class Database {
           return; 
         }
         if (!row) {
-          console.log("User not found for access token", accessToken, err)
+          console.log("User not found for access token, creating.", accessToken)
+          if (err) {
+            console.error(err)
+          }
           this.query("INSERT INTO user (active_access_token) VALUES ($token)", {
             $token: accessToken
           }, (err) => {
@@ -50,8 +52,24 @@ class Database {
             resolve(this.getUser(accessToken, (tryCount+1)))
           })
         } else {
-          console.log("Found user:", row)
+          // console.log("Found user:", row)
           resolve(row)
+        }
+      })
+    })
+  }
+
+  storeVkToken(accessToken, vkId, vkToken) {
+    return new Promise((resolve, reject) => {
+      this.query("UPDATE user SET vk_user_id = $vkId, vk_token = $vkToken WHERE active_access_token = $accessToken", {
+        $accessToken: accessToken,
+        $vkId: vkId,
+        $vkToken: vkToken
+      }, (err, res) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
         }
       })
     })
