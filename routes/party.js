@@ -10,7 +10,7 @@ let party = {
         lat: req.body.location.lat,
         lon: req.body.location.lon
       }
-    })
+    });
   },
 
   listParties(req, res) {
@@ -25,7 +25,7 @@ let party = {
           lat: 1,
           lon: 1
         },
-        headerPicture: "https://picsum.photos/200/50"
+        headerPicture: "https://picsum.photos/400/500"
       },
       {
         partyId: 2,
@@ -37,29 +37,10 @@ let party = {
           lat: 1,
           lon: 1
         },
-        headerPicture: "https://picsum.photos/200/50"
+        headerPicture: "https://picsum.photos/400/500"
       }
-    ])
-  },
-
-  searchItem(req, res) {
-      req.send([
-        {
-            id: 1,
-            name: "Tank Top",
-            pictureUrl: "https://picsum.photos/50/50",
-            price: 12,
-            currency: "EUR"
-        },
-        {
-            id: 2,
-            name: "Jeans",
-            pictureUrl: "https://picsum.photos/50/50",
-            price: 12,
-            currency: "EUR"
-        }
-      ])
+    ]);
   }
-}
+};
 
-module.exports = party
+module.exports = party;
