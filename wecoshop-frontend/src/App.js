@@ -15,7 +15,7 @@ import Pages from "./Pages";
 
 export default function App() {
   return (
-    <Router basename="/app">
+    <Router>
       <div>
         {/* <ul>
           <li>
