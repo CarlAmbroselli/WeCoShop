@@ -11,6 +11,33 @@ let party = {
         lon: req.body.location.lon
       }
     })
+  },
+
+  listParties(req, res) {
+    res.send([
+      {
+        partyId: 1,
+        creatorUser: 4,
+        name: "Christmas Bash",
+        date: 1573893161,
+        location: {
+          name: req.body.location.name,
+          lat: req.body.location.lat,
+          lon: req.body.location.lon
+        }
+      },
+      {
+        partyId: 2,
+        creatorUser: 4,
+        name: "Rosa Queens",
+        date: 1573893161,
+        location: {
+          name: req.body.location.name,
+          lat: req.body.location.lat,
+          lon: req.body.location.lon
+        }
+      }
+    ])
   }
 }
 
