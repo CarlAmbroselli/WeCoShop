@@ -15,6 +15,10 @@ app.post('/api/v1/login/vk', function (req, res) {
   login.vkLogin(req, res);
 });
 
+app.get('/api/v1/oauth/vk', function (req, res) {
+    login.vkCodeResponse(req, res)
+})
+
 app.post('/api/v1/login/guest', function (req, res) {
   login.guestLogin(req, res);
 });
