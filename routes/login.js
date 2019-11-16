@@ -35,12 +35,7 @@ let login = {
         if (!user.vk_user_id) {
             this.vkLogin(req, res);
         } else {
-            res.send({
-                userId: user.id,
-                vkId: user.vk_user_id,
-                name: user.name,
-                pictureUrl: user.pictureUrl
-            })
+            res.redirect(credentials.POST_LOGIN_REDIRECT);
         }
     })
   },
