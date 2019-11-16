@@ -57,6 +57,9 @@ Response: Party
 ```
 GET /search/item/:search
 Response: SearchResult
+
+GET /search/location/:text
+Response: Location
 ```
 
 ### Backend Entities
@@ -74,11 +77,7 @@ Party
     creatorUser: int, // (not set during creation)
     name: string,
     date: int,
-    location: {
-        name: string,
-        lat: float,
-        lon: float
-    }
+    location: Location
 }
 
 SearchResult
@@ -93,5 +92,12 @@ SearchItem
     pictureUrl: string,
     price: int,
     currency: string
+}
+
+Location
+{
+    name: string,
+    lat: float,
+    lon: float
 }
 ```

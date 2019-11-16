@@ -1,4 +1,4 @@
-module.exports = {
+let login = {
 
     authenticate(req, res) {
         if (!req.body.callbackUrl) {
@@ -8,10 +8,12 @@ module.exports = {
     },
 
     vkLogin(req, res) {
-        authenticate(req, res);
+        login.authenticate(req, res);
     },
 
     guestLogin(req, res) {
-        authenticate(req, res);
+        login.authenticate(req, res);
     }
 }
+
+module.exports = login;
