@@ -1,4 +1,5 @@
 var express = require('express');
+var process = require('process');
 var app = express();
 var bodyParser = require('body-parser');
 var login = require('./routes/login')
@@ -19,10 +20,16 @@ app.post('/party/create', function (req, res) {
   party.createParty(req, res);
 });
 
+app.get('/search/list', function (req, res) {
+  party.listParties(req, res);
+});
+
 app.get('/search/location/:text', function (req, res) {
   search.searchLocation(req, res);
 });
 
-app.listen(8000, function () {
-  console.log('WeCoShop is running on port 8000!');
+let port = process.env.PORT || 8000
+
+app.listen(port, function () {
+  console.log('WeCoShop is running on port ' + port + '!');
 });

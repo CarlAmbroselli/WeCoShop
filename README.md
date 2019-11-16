@@ -51,6 +51,9 @@ Response: Person
 POST /party/create
 Request: Party
 Response: Party
+
+GET /party/list
+Response: Party[]
 ```
 
 ### Search
