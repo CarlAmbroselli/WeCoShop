@@ -17,6 +17,7 @@ let search = {
           }
         }))
       } else {
+        console.error("Error when geocoding", err)
         res.send([])
       }
     });
