@@ -1,8 +1,12 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var login = require('./routes/login')
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+app.use(bodyParser.json())
+
+app.post('/login/vk', function (req, res) {
+    login(req, res);
 });
 
 app.listen(3000, function () {
