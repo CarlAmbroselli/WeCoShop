@@ -149,7 +149,8 @@ class Database {
 
   getAllParties(creatorUserId) {
     return new Promise((resolve, reject) => {
-      this.all("SELECT * FROM party WHERE creator_user = $creatorUserId", {
+      // for demo purposes everyone can see every party
+      this.all("SELECT * FROM party WHERE creator_user = $creatorUserId OR 1=1", {
         $creatorUserId: creatorUserId
       }, (err, res) => {
         if (err) {
