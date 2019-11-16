@@ -7,11 +7,22 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import './App.css';
+import { PageHeader } from 'antd';
+
 
 export default function App() {
   return (
     <Router>
       <div>
+      <PageHeader
+        style={{
+          border: '1px solid rgb(235, 237, 240);',
+        }}
+        // onBack={() => null}
+        title="WeCoShop"
+        subTitle="This is a subtitle"
+      />
         <ul>
           <li>
             <Link to="/">Home</Link>
