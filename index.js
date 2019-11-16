@@ -6,25 +6,26 @@ var login = require('./routes/login')
 var party = require('./routes/party')
 var search = require('./routes/search')
 
+
 app.use(bodyParser.json())
 
-app.post('/login/vk', function (req, res) {
+app.post('/api/v1/login/vk', function (req, res) {
   login.vkLogin(req, res);
 });
 
-app.post('/login/guest', function (req, res) {
+app.post('/api/v1/login/guest', function (req, res) {
   login.guestLogin(req, res);
 });
 
-app.post('/party/create', function (req, res) {
+app.post('/api/v1/party/create', function (req, res) {
   party.createParty(req, res);
 });
 
-app.get('/search/list', function (req, res) {
+app.get('/api/v1/search/list', function (req, res) {
   party.listParties(req, res);
 });
 
-app.get('/search/location/:text', function (req, res) {
+app.get('/api/v1/search/location/:text', function (req, res) {
   search.searchLocation(req, res);
 });
 

@@ -28,14 +28,14 @@
 
 ### Login
 ```
-POST /login/vk
+POST /api/v1/login/vk
 Request:
 {
     callbackUrl: string
 }
 Response: Person
 
-POST /login/guest
+POST /api/v1/login/guest
 Request (optional body if recurring user): 
 {
     name: string,
@@ -48,21 +48,21 @@ Response: Person
 
 ### Party
 ```
-POST /party/create
+POST /api/v1/party/create
 Request: Party
 Response: Party
 
-GET /party/list
+GET /api/v1/party/list
 Response: Party[]
 ```
 
 ### Search
 
 ```
-GET /search/item/:search
+GET /api/v1/search/item/:search
 Response: SearchResult
 
-GET /search/location/:text
+GET /api/v1/search/location/:text
 Response: Location
 ```
 
