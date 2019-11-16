@@ -1,4 +1,5 @@
 let search = {
+
   searchLocation(req, res) {
     res.send({
       name: req.params.text,
@@ -6,6 +7,7 @@ let search = {
       lon: 24.9410248
     })
   }
+  
 }
 
 module.exports = search
