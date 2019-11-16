@@ -49,7 +49,7 @@ export class PartyForm extends React.Component {
 
   search = _.debounce(value => {
     api.findLocation(value).then(result => {
-      this.setState({ locationSearches: result });
+      this.setState({ locationSearches: result.map(({ name }) => name) });
     });
   }, 200);
 

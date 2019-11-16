@@ -4,7 +4,8 @@ export default {
   parties: getParties,
   createParty: createParty,
   getCurrentUser,
-  findLocation
+  findLocation,
+  getParty
 };
 
 async function getCurrentUser() {
@@ -26,6 +27,13 @@ async function findLocation(text) {
     credentials: "include"
   }).then(response => response.json());
   return locations;
+}
+
+async function getParty(partyId) {
+  const party = await fetch(`${HOST}/api/v1/search/party/${partyId}`, {
+    credentials: "include"
+  }).then(response => response.json());
+  return party;
 }
 
 async function createParty(data) {
