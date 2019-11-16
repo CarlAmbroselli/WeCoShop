@@ -8,6 +8,7 @@ var login = require('./routes/login')
 var party = require('./routes/party')
 var search = require('./routes/search')
 var person = require('./routes/person')
+var credentials = require('./credentials')
 
 var Database = require('./database')
 var db = new Database();
@@ -16,7 +17,10 @@ var ProductsApi = require('./productsApi')
 var productsApi = new ProductsApi();
 
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({
+    origin: credentials.CORS_ORIGIN,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }))
 app.use(cookieParser())
 
 function randomString() {
