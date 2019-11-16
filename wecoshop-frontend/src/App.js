@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import { PageHeader } from 'antd';
+import Signup from './controller/signup.js'
 
 
 export default function App() {
@@ -28,7 +29,7 @@ export default function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/signup">Signup</Link>
           </li>
           <li>
             <Link to="/topics">Topics</Link>
@@ -36,8 +37,8 @@ export default function App() {
         </ul>
 
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/signup">
+            <Signup />
           </Route>
           <Route path="/topics">
             <Topics />
