@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var login = require('./routes/login')
 var party = require('./routes/party')
+var search = require('./routes/search')
 
 app.use(bodyParser.json())
 
@@ -19,7 +20,7 @@ app.post('/party/create', function (req, res) {
 });
 
 app.get('/search/location/:text', function (req, res) {
-  party.createParty(req, res);
+  search.searchLocation(req, res);
 });
 
 app.listen(8000, function () {
