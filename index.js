@@ -48,7 +48,7 @@ app.post('/api/v1/login/guest', function (req, res) {
   login.guestLogin(req, res);
 });
 
-app.post('/api/v1/me', function (req, res) {
+app.get('/api/v1/me', function (req, res) {
   person.getCurrentUser(req, res, db);
 });
 
