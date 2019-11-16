@@ -25,11 +25,17 @@ const Filter = styled.div`
 const Content = styled.div`
   position: relative;
   width: 100%;
+  color: white;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  text-align: center;
+
+  > h4 {
+    color: white;
+  }
 `;
 
 const LoginButton = styled(Button)`
@@ -42,7 +48,7 @@ const LoginButton = styled(Button)`
 `;
 
 const LogoImage = styled.img`
-  width: 70%;
+  width: 50%;
   ${media.tablet`
   max-width: 200px;
 `}
@@ -54,8 +60,15 @@ export default () => {
       <Filter />
       <Content>
         <LogoImage src={Logo} />
-        <h4>The digital shopping experience</h4>
-        <LoginButton size="large" type="primary" href="/">
+        <h4>
+          Party and shop together with your friends - save money and the
+          evironment
+        </h4>
+        <LoginButton
+          size="large"
+          type="primary"
+          href="http://localhost:8000/api/v1/login/vk"
+        >
           Login
         </LoginButton>
       </Content>

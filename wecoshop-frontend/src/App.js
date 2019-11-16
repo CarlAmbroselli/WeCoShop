@@ -8,45 +8,40 @@ import {
   useParams
 } from "react-router-dom";
 import "./App.css";
-import { PageHeader } from "antd";
+import { PageHeader, Avatar } from "antd";
 import Signup from "./controller/signup.js";
 
 import Pages from "./Pages";
+import api from "./api";
 
-export default function App() {
-  return (
-    <Router>
-      <div>
-        {/* <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/signup">Signup</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
-        </ul> */}
+export default class App extends React.Component {
+  componentDidMount() {
+    api.getCurrentUser().then(user => {
+      console.log("Current User", user);
+      if (
+        (!user.vkId || !user.email) &&
+        window.location.pathname !== "/login"
+      ) {
+        window.location.pathname = "/login";
+      }
+    });
+  }
 
-        <Switch>
-          <Route exact path="/" component={Pages.PartyOverview}></Route>
-          <Route path="/login" component={Pages.Login}></Route>
-          <Route path="/topics">
-            <Topics />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
+  render() {
+    return (
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Pages.PartyOverview}></Route>
+            <Route path="/login" component={Pages.Login}></Route>
+            <Route path="/topics">
+              <Topics />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 function Topics() {
