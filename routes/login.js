@@ -20,11 +20,11 @@ let login = {
         `client_id=${APP_ID}&` +
         `client_secret=${APP_SECRET}&` + 
         `code=${code}&` +
-        `redirect_uri=${REDIRECT_URI}`, function (error, response, body) {
+        `redirect_uri=${REDIRECT_URI}&callbackUr`, function (error, response, body) {
             let authToken = JSON.parse(response.body)
             console.log("VK Access Token: ", authToken)
             db.storeVkToken(req.cookies.access_token, authToken.user_id, authToken.access_token).then(() => {
-                res.redirect(req.query.callbackUrl);
+                res.redirect(credentials.POST_LOGIN_REDIRECT);
             })
     })
   },
