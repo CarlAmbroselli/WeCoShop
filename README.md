@@ -29,15 +29,59 @@
 ### Login
 ```
 GET /login/vk
-{
-    userId: 123,
-    name: "Moe Chedar",
-    pictureUrl: "https://picsum.photos/50/50"
-}
+Response: Person
 
 GET /login/guest
+Response: Person
+```
+
+### Party
+```
+POST /party/create
+Request: Party
+Response: Party
+```
+
+### Search
+
+```
+GET /search/item/:search
+Response: SearchResult
+```
+
+### Backend Entities
+```
+Person
 {
-    userId: 123,
-    pictureUrl: "https://picsum.photos/50/50"
+    userId: int,
+    name: optional<string>,
+    pictureUrl: optional<string>
+}
+
+Party
+{
+    partyId: int, // (not set during creation)
+    creatorUser: int, // (not set during creation)
+    name: string,
+    date: int,
+    location: {
+        name: string,
+        lat: float,
+        lon: float
+    }
+}
+
+SearchResult
+{
+    result: SearchItem[]
+}
+
+SearchItem
+{
+    id: int,
+    name: string,
+    pictureUrl: string,
+    price: int,
+    currency: string
 }
 ```
