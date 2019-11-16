@@ -93,7 +93,8 @@ export class Party extends React.Component {
               this.setState(
                 {
                   page: 0,
-                  searchTerm: value
+                  searchTerm: value,
+                  items: []
                 },
                 () => {
                   this.findItems(value);
