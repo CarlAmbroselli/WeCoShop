@@ -5,5 +5,9 @@ export default {
 };
 
 async function getParties() {
-  const parties = fetch(`${HOST}/api/v1/search/list`);
+  const parties = await fetch(`${HOST}/api/v1/party/list`).then(response =>
+    response.json()
+  );
+  console.log("Having parties", parties);
+  return parties;
 }
