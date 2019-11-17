@@ -20,7 +20,7 @@ export default party => (
   <PartyCard
     hoverable
     style={{ width: "100%" }}
-    cover={<img src={party.header_picture} style={{ maxHeight: 350 }} />}
+    cover={<img src={party.header_picture} />}
   >
     <Card.Meta title={party.name} description={party.location_name} />
   </PartyCard>
