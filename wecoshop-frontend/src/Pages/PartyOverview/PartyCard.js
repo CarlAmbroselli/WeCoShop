@@ -12,6 +12,7 @@ const PartyCard = styled(Card)`
 
   ${media.tablet`
     max-width: 300px;
+    max-height: 550px;
     margin-right: 10px !important;
   `}
 `;
