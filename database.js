@@ -157,7 +157,7 @@ class Database {
           console.log("Error reading all parties:", err)
         }
         console.log(res)
-        resolve(res)
+        resolve(res.reverse())
       })
     })
   }
